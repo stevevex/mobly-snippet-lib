@@ -132,6 +132,8 @@ public final class MethodDescriptor {
                 return parameters.getDouble(index);
             } else if (type == Integer.class || type == int.class) {
                 return parameters.getInt(index);
+            } else if (type instanceof Class && ((Class) type).isEnum()) {
+                return ((Class) type).getEnumConstants()[parameters.getInt(index)];
             } else if (type == Intent.class) {
                 return buildIntent(parameters.getJSONObject(index));
             } else if (type == String.class) {
